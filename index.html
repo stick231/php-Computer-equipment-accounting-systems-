@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form id="deviceForm">
+        <label for="device_type">Тип устройства:</label>
+        <input type="text" id="device_type" name="device_type"><br>
+
+        <label for="manufacturer">Производитель:</label>
+        <input type="text" id="manufacturer" name="manufacturer"><br>
+
+        <label for="model">Модель:</label>
+        <input type="text" id="model" name="model"><br>
+
+        <label for="serial_number">Серийный номер:</label>
+        <input type="text" id="serial_number" name="serial_number"><br>
+
+        <label for="purchase_date">Дата приобретения:</label>
+        <input type="date" id="purchase_date" name="purchase_date"><br>
+
+        <button type="submit">Добавить устройство</button><!--create.php -->
+    </form>
+    <table id="devicesTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Тип устройства</th>
+                <th>Производитель</th>
+                <th>Модель</th>
+                <th>Серийный номер</th>
+                <th>Дата приобретения</th>
+                <th>Действия</th>
+                <th>
+                    <button>
+                        <!-- delete.php -->
+                        <!-- кнопка удаление. реализовать при клике, через запрос с js на php-->
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- read.php -->
+            <!-- Данные будут добавляться динамически с помощью JavaScript -->
+            <!-- сделать через script.js с запросом на php на read.php -->
+        </tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
