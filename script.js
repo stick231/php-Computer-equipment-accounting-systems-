@@ -44,7 +44,7 @@ function fetchDevices() {
                     <td>${device.purchaseDate}</td>
                     <td>
                         <button class="edit-btn">Редактировать</button>
-                        <button class="delete-btn">Удалить</button>
+                        <button class="delete-btn" data-device-id="${device.id}">Удалить</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -53,4 +53,33 @@ function fetchDevices() {
         .catch(error => {
             alert('Произошла ошибка: ' + error.message);
         });
+}
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-btn')) {
+        const deviceId = event.target.dataset.deviceId;
+        deleteDevice(deviceId);
+    }
+});
+
+function deleteDevice(deviceId) {
+    fetch('delete.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `id=${deviceId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            fetchDevices(); // Обновляем таблицу после удаления
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        alert('Произошла ошибка: ' + error.message);
+    });
 }
