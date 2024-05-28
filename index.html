@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
+    <h1>Device Management</h1>
+
     <form id="deviceForm">
         <label for="device_type">Тип устройства:</label>
         <input type="text" id="device_type" name="device_type"><br>
@@ -23,8 +24,10 @@
         <label for="purchase_date">Дата приобретения:</label>
         <input type="date" id="purchase_date" name="purchase_date"><br>
 
-        <button id="button-create" type="submit">Добавить устройство</button><!--create.php -->
+        <button id="button-create" type="submit">Добавить устройство</button>
     </form>
+    
+
     <table id="devicesTable">
         <thead>
             <tr>
@@ -35,20 +38,12 @@
                 <th>Серийный номер</th>
                 <th>Дата приобретения</th>
                 <th>Действия</th>
-                <th>
-                    <button>
-                        <!-- delete.php -->
-                        <!-- кнопка удаление. реализовать при клике, через запрос с js на php-->
-                    </button>
-                </th>
             </tr>
         </thead>
-        <tbody>
-            <!-- read.php -->
-            <!-- Данные будут добавляться динамически с помощью JavaScript -->
-            <!-- сделать через script.js с запросом на php на read.php -->
-        </tbody>
+        <tbody id="table-body"></tbody>
     </table>
+
     <script src="script.js"></script>
 </body>
 </html>
+
