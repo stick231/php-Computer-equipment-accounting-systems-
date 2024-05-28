@@ -37,11 +37,11 @@ function fetchDevices() {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${device.id}</td>
-                    <td>${device.type}</td>
+                    <td>${device.device_type}</td>
                     <td>${device.manufacturer}</td>
                     <td>${device.model}</td>
-                    <td>${device.serialNumber}</td>
-                    <td>${device.purchaseDate}</td>
+                    <td>${device.serial_number}</td>
+                    <td>${device.purchase_date}</td>
                     <td>
                         <button class="edit-btn">Редактировать</button>
                         <button class="delete-btn" data-device-id="${device.id}">Удалить</button>

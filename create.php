@@ -13,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $stmt->bind_param("sssss", $deviceType, $manufacturer, $model, $serialNumber, $purchaseDate);
     $stmt->execute();
 
-    $stmt->close();
+    $response = array(
+        'success' => true,
+        'message' => 'Устройство успешно создано'
+    );
+    echo json_encode($response);
 }
-?>
