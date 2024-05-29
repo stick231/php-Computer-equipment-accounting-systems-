@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Device Management</h1>
+    <h1>Управление устройствами</h1>
 
     <form id="deviceForm">
         <label for="device_type">Тип устройства:</label>
-        <input type="text" id="device_type" name="device_type"><br>
+        <input type="text" id="device_type" name="device_type" required><br>
 
         <label for="manufacturer">Производитель:</label>
-        <input type="text" id="manufacturer" name="manufacturer"><br>
+        <input type="text" id="manufacturer" name="manufacturer" required><br>
 
         <label for="model">Модель:</label>
-        <input type="text" id="model" name="model"><br>
+        <input type="text" id="model" name="model" required><br>
 
         <label for="serial_number">Серийный номер:</label>
-        <input type="text" id="serial_number" name="serial_number"><br>
+        <input type="text" id="serial_number" name="serial_number" required><br>
 
         <label for="purchase_date">Дата приобретения:</label>
-        <input type="date" id="purchase_date" name="purchase_date"><br>
+        <input type="date" id="purchase_date" name="purchase_date" required><br>
 
         <button id="button-create" type="submit">Добавить устройство</button>
     </form>
@@ -47,3 +48,6 @@
 </body>
 </html>
 
+<!-- добавить условия на пустые input -->
+<!-- добавить стили -->
+<!-- и update.php -->
