@@ -2,28 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchDevices();
 });
 
-document.getElementById("button-create").addEventListener("click", function(event) {
-    event.preventDefault();
-    const form = document.getElementById('deviceForm');
-    const formData = new FormData(form);
+let deviceId;
+let isEditing = true;
+const createButton = document.getElementById('button-create');
 
-    fetch('create.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert(data.message);
-            form.reset();
-            fetchDevices();
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(error => {
-        alert('Произошла ошибка: ' + error.message);
-    });
+createButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    if (isEditing) {
+        createDevice()
+        deviceId = null
+        fetchDevices();
+    }
 });
 
 function fetchDevices() {
@@ -55,13 +44,20 @@ function fetchDevices() {
         });
 }
 
+
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete-btn')) {
         const deviceId = event.target.dataset.deviceId;
         deleteDevice(deviceId);
     } else if (event.target.classList.contains('edit-btn')) {
-        const deviceId = event.target.dataset.deviceId;
+        deviceId = event.target.dataset.deviceId;
         editDevice(deviceId);
+        isEditing = false
+        createButton.addEventListener("click", function(event){
+            event.preventDefault();
+            updateDevice(deviceId)
+            isEditing = true
+        })
     }
 });
 
@@ -77,7 +73,7 @@ function deleteDevice(deviceId) {
     .then(data => {
         if (data.success) {
             alert(data.message);
-            fetchDevices(); // Обновляем таблицу после удаления
+            fetchDevices();
         } else {
             alert(data.message);
         }
@@ -87,22 +83,29 @@ function deleteDevice(deviceId) {
     });
 }
 
-function editDevice(deviceId) {
-    document.getElementById('device_type').value = "";
-    document.getElementById('manufacturer').value = "";
-    document.getElementById('model').value = "";
-    document.getElementById('serial_number').value = "";
-    document.getElementById('purchase_date').value = "";
+function editDevice() {
+    const deviceTypeInput = document.getElementById('device_type');
+    const manufacturerInput = document.getElementById('manufacturer');
+    const modelInput = document.getElementById('model');
+    const serialNumberInput = document.getElementById('serial_number');
+    const purchaseDateInput = document.getElementById('purchase_date');
 
-    document.getElementById('button-create').textContent = 'Сохранить';
+    if (deviceTypeInput && manufacturerInput && modelInput && serialNumberInput && purchaseDateInput) {
+        deviceTypeInput.value = "";
+        manufacturerInput.value = "";
+        modelInput.value = "";
+        serialNumberInput.value = "";
+        purchaseDateInput.value = "";
 
-    document.getElementById('button-create').addEventListener('click', function(event) {
-        event.preventDefault();
-        updateDevice(deviceId);
-})
+        createButton.value = 'Сохранить';
+        createButton.textContent = 'Сохранить';
+
+        createButton.removeEventListener('click', updateDevice);//?
+
+    } else {
+        alert('Не найдены необходимые поля формы');
+    }
 }
-
-
 
 function updateDevice(deviceId) {
     const form = document.getElementById('deviceForm');
@@ -118,7 +121,31 @@ function updateDevice(deviceId) {
         if (data.success) {
             alert(data.message);
             form.reset();
-            document.getElementById('button-create').textContent = 'Добавить устройство';
+            createButton.value = 'Создать';
+            createButton.textContent = 'Создать';
+            fetchDevices();
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        alert('Произошла ошибка: ' + error.message);
+    });
+}
+
+function createDevice() {
+    const form = document.getElementById('deviceForm');
+    const formData = new FormData(form);
+    
+    fetch('create.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            form.reset();
             fetchDevices();
         } else {
             alert(data.message);
