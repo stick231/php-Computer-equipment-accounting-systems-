@@ -83,7 +83,7 @@ function deleteDevice(deviceId) {
     });
 }
 
-function editDevice() {
+function editDevice(deviceId) {
     const deviceTypeInput = document.getElementById('device_type');
     const manufacturerInput = document.getElementById('manufacturer');
     const modelInput = document.getElementById('model');
@@ -91,16 +91,22 @@ function editDevice() {
     const purchaseDateInput = document.getElementById('purchase_date');
 
     if (deviceTypeInput && manufacturerInput && modelInput && serialNumberInput && purchaseDateInput) {
-        deviceTypeInput.value = "";
-        manufacturerInput.value = "";
-        modelInput.value = "";
-        serialNumberInput.value = "";
-        purchaseDateInput.value = "";
+        fetch(`read_one.php?id=${deviceId}`)
+            .then(response => response.json())
+            .then(data => {
+                deviceTypeInput.value = data.device_type;
+                manufacturerInput.value = data.manufacturer;
+                modelInput.value = data.model;
+                serialNumberInput.value = data.serial_number;
+                purchaseDateInput.value = data.purchase_date;
+            })
+            .catch(error => {
+                alert('Произошла ошибка: ' + error.message);
+            });
 
         createButton.value = 'Сохранить';
-        createButton.textContent = 'Сохранить';
 
-        createButton.removeEventListener('click', updateDevice);//?
+        createButton.removeEventListener('click', updateDevice);
 
     } else {
         alert('Не найдены необходимые поля формы');
