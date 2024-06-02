@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetchDevices();
+        fetchDevices();
 });
 
 let deviceId;
@@ -15,8 +15,20 @@ createButton.addEventListener("click", function(event) {
     }
 });
 
-function fetchDevices() {
-    fetch('read.php')
+const searchInput = document.getElementById('search-inp');
+searchInput.addEventListener('input', function() {
+    const searchQuery = searchInput.value.trim();
+    fetchDevices(searchQuery);
+});
+
+function fetchDevices(searchQuery = '') {
+    let url = 'read.php';
+    
+    if (searchQuery) {
+        url += `?search=${searchQuery}`;
+    }
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('table-body');
@@ -161,3 +173,5 @@ function createDevice() {
         alert('Произошла ошибка: ' + error.message);
     });
 }
+
+//реализовать поиск

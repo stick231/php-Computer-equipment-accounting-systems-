@@ -11,24 +11,24 @@
 
     <form id="deviceForm">
         <label for="device_type">Тип устройства:</label>
-        <input type="text" id="device_type" name="device_type" required><br>
-
+        <input type="text" id="device_type" name="device_type" maxlength="15">
+        
         <label for="manufacturer">Производитель:</label>
-        <input type="text" id="manufacturer" name="manufacturer" required><br>
-
+        <input type="text" id="manufacturer" name="manufacturer" maxlength="15">
+        
         <label for="model">Модель:</label>
-        <input type="text" id="model" name="model" required><br>
-
+        <input type="text" id="model" name="model" required maxlength="17">
+        
         <label for="serial_number">Серийный номер:</label>
-        <input type="number" id="serial_number" name="serial_number" required><br>
+        <input type="number" id="serial_number" name="serial_number" maxlength="8">
 
         <label for="purchase_date">Дата приобретения:</label>
-        <input type="date" id="purchase_date" name="purchase_date" required><br>
-
+        <input type="date" id="purchase_date" name="purchase_date"><br>
         <input type="submit" id="button-create" value="создать">
     </form>
-    
-
+    <form>
+        <label for="search">Поиск управление устройства <input type="text" name="search" id="search-inp" placeholder="Введите поисковой запрос"></label>
+    </form>
     <table id="devicesTable">
         <thead>
             <tr>
@@ -47,7 +47,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-<!-- добавить условия на пустые input -->
-<!-- добавить стили -->
-<!-- и update.php -->
