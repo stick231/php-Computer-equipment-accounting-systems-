@@ -5,3 +5,67 @@
     margin: 0;
     font-family:  "Montserrat", sans-serif;
 }
+
+body{
+}
+
+h1{
+    text-align: center;
+    font-size: 40px;
+    margin: 1% 0 2% 0;
+}
+
+label{
+    font-size: 19px;
+    font-weight: bold;
+    margin: 1%;
+}
+
+input:not([type="submit"]){
+    margin-bottom: 25px;
+}
+
+#button-create {
+    cursor: pointer;
+    width: 16vw;
+    height: 7vh;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 50px;
+}
+
+input:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+#search-inp{
+    width: 200px;
+    height: 20px;
+}
+
+#search_btn{
+    width: 100px;
+    height: 25px;
+}
+
+table#devicesTable {
+    width: 100%;
+    max-width: 100vw;
+    border-collapse: collapse;
+}
+
+table#devicesTable th,
+table#devicesTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-right: 2px solid black;
+}
+
+th {
+    border-top: 1px solid #ddd;
+}
+
