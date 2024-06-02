@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 
     $sql = "SELECT * FROM devices";
     if ($searchQuery) {
-        $sql .= "WHERE device_type LIKE '%$searchQuery%'
+        $sql .= " WHERE device_type LIKE '%$searchQuery%'
                             OR ID LIKE '%$searchQuery%' 
                             OR manufacturer LIKE '%$searchQuery%'
                             OR model LIKE '%$searchQuery%'
