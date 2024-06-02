@@ -1,30 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-        fetchDevices();
+        fetchDevices();//обновление при загрузке
 });
 
 let deviceId;
 let isEditing = true;
 const createButton = document.getElementById('button-create');
 
-createButton.addEventListener("click", function(event) {
+createButton.addEventListener("click", function(event) {//событие клика 
     event.preventDefault();
     if (isEditing) {
-        createDevice()
-        deviceId = null
-        fetchDevices();
+        if(checkInp()){
+            createDevice()
+            deviceId = null
+            fetchDevices();
+        }
     }
 });
 
-const searchInput = document.getElementById('search-inp');
+const searchInput = document.getElementById('search-inp');//событие при записе в input 
 searchInput.addEventListener('input', function() {
     const searchQuery = searchInput.value.trim();
     fetchDevices(searchQuery);
 });
 
-function fetchDevices(searchQuery = '') {
+function fetchDevices(searchQuery = '') {//функция вывода из бд и поиска если input не пустой
     let url = 'read.php';
     
-    if (searchQuery) {
+    if (searchQuery) {// if search не ""
         url += `?search=${searchQuery}`;
     }
 
@@ -57,7 +59,7 @@ function fetchDevices(searchQuery = '') {
 }
 
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function(event) {//удаление и редактирование
     if (event.target.classList.contains('delete-btn')) {
         const deviceId = event.target.dataset.deviceId;
         deleteDevice(deviceId);
@@ -67,13 +69,15 @@ document.addEventListener('click', function(event) {
         isEditing = false
         createButton.addEventListener("click", function(event){
             event.preventDefault();
-            updateDevice(deviceId)
-            isEditing = true
+            if(checkInp()){
+                updateDevice(deviceId)
+                isEditing = true
+            }
         })
     }
 });
 
-function deleteDevice(deviceId) {
+function deleteDevice(deviceId) {//функция удаления
     fetch('delete.php', {
         method: 'POST',
         headers: {
@@ -95,7 +99,7 @@ function deleteDevice(deviceId) {
     });
 }
 
-function editDevice(deviceId) {
+function editDevice(deviceId) {//функция подготовки формы к редактированию
     const deviceTypeInput = document.getElementById('device_type');
     const manufacturerInput = document.getElementById('manufacturer');
     const modelInput = document.getElementById('model');
@@ -125,7 +129,7 @@ function editDevice(deviceId) {
     }
 }
 
-function updateDevice(deviceId) {
+function updateDevice(deviceId) {//функция редактирования
     const form = document.getElementById('deviceForm');
     const formData = new FormData(form);
     formData.append('id', deviceId);
@@ -151,7 +155,7 @@ function updateDevice(deviceId) {
     });
 }
 
-function createDevice() {
+function createDevice() {//функция добавления
     const form = document.getElementById('deviceForm');
     const formData = new FormData(form);
     
@@ -174,4 +178,37 @@ function createDevice() {
     });
 }
 
-//реализовать поиск
+function checkInp(){
+    const deviceTypeInput = document.getElementById('device_type');
+    const manufacturerInput = document.getElementById('manufacturer');
+    const modelInput = document.getElementById('model');
+    const serialNumberInput = document.getElementById('serial_number');
+    const purchaseDateInput = document.getElementById('purchase_date');
+
+    if(deviceTypeInput.value === ''){
+        alert('Введите тип устройства');
+        return false;
+    }
+
+    if(manufacturerInput.value === ''){
+        alert('Введите производителя');
+        return false;
+    }
+
+    if(modelInput.value === ''){
+        alert('Введите модель');
+        return false;
+    }
+
+    if(serialNumberInput.value === ''){
+        alert('Введите серийный номер');
+        return false;
+    }
+
+    if(purchaseDateInput.value === ''){
+        alert('Введите дату приобретения');
+        return false;
+    }
+
+    return true;
+}
