@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-        fetchDevices();//обновление при загрузке
+    checkuser();
+    fetchDevices();//обновление при загрузке
 });
 
 let deviceId;
@@ -211,4 +212,24 @@ function checkInp(){
     }
 
     return true;
+}
+
+function checkuser(){
+    fetch('checkuser.php')
+    .then(response => response.text())
+    .then(data => {
+        console.log(data)
+        if(data === 'false'){
+            window.location.href = 'login.php';
+        }
+        else if(data === 'true'){
+            window.location.href = "register.php";
+        }
+        else{
+            console.log("Пользователь зарегистрирован и авторизован");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
