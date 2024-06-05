@@ -219,10 +219,10 @@ function checkuser(){
     .then(response => response.text())
     .then(data => {
         console.log(data)
-        if(data === 'false'){
+        if(data === 'true'){
             window.location.href = 'login.php';
         }
-        else if(data === 'true'){
+        else if(data === 'false'){
             window.location.href = "register.php";
         }
         else{

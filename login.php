@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["login"]) && isset($_SESSION["password"]) == true) {
-    header("location: index.html");
+  header("location: index.html");
 }
 ?>
 <!DOCTYPE html>
