@@ -7,43 +7,73 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Управление устройствами</h1>
-
-    <form id="deviceForm">
-        <label for="device_type">Тип устройства:</label>
-        <input type="text" id="device_type" name="device_type" maxlength="15">
-        
-        <label for="manufacturer">Производитель:</label>
-        <input type="text" id="manufacturer" name="manufacturer" maxlength="15">
-        
-        <label for="model">Модель:</label>
-        <input type="text" id="model" name="model" required maxlength="17">
-        
-        <label for="serial_number">Серийный номер:</label>
-        <input type="number" id="serial_number" name="serial_number" pattern="[0-9]{1,8}">
-
-        <label for="purchase_date">Дата приобретения:</label>
-        <input type="date" id="purchase_date" name="purchase_date"><br>
-        <input type="submit" id="button-create" value="создать">
-    </form>
-    <form>
-        <label for="search">Поиск управление устройства <input type="text" name="search" id="search-inp" placeholder="Введите поисковой запрос"></label>
-    </form>
-    <table id="devicesTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Тип устройства</th>
-                <th>Производитель</th>
-                <th>Модель</th>
-                <th>Серийный номер</th>
-                <th>Дата приобретения</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-    </table>
-
+    <header>
+        <h1>Управление устройствами</h1>
+    </header>
+    <section>
+    <div id="Form">
+        <form id="deviceForm">
+            <div class="form__input">
+                <input type="text" id="device_type" name="device_type" maxlength="15">
+                <label class="form__label" for="device_type">Тип устройства:</label>
+            </div>
+            <div class="form__input">
+                <input type="text" id="manufacturer" name="manufacturer" maxlength="15">
+                <label class="form__label" for="manufacturer">Производитель:</label>
+            </div>
+            <div class="form__input">
+                <input type="text" id="model" name="model" required maxlength="17">
+                <label class="form__label" for="model">Модель:</label>
+            </div>
+            <div class="form__input">
+                <input type="number" id="serial_number" name="serial_number" pattern="[0-9]{1,8}">
+                <label class="form__label" for="serial_number">Серийный номер:</label>
+            </div>
+            <div class="form__input">
+                <input type="date" id="purchase_date" name="purchase_date">
+                <label class="form__label" for="purchase_date">Дата приобретения:</label>
+            </div>
+            <input type="submit" id="button-create" value="создать">
+        </form>
+        </table>
+    <div>    
+        <table id="AddedDevices">
+            <h1>Последние добавленые устройства</h1>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Тип устройства</th>
+                    <th>Производитель</th>
+                    <th>Модель</th>
+                    <th>Серийный номер</th>
+                    <th>Дата приобретения</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="added-device-table"></tbody>
+        </table>
+    </div>
+</section>
+    </div> 
+        <section>  
+        <form id="form-search">
+            <label for="search" id="form__label">Поиск устройств <input type="text" name="search" id="search-inp"></label>
+        </form>
+        <table id="devicesTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Тип устройства</th>
+                    <th>Производитель</th>
+                    <th>Модель</th>
+                    <th>Серийный номер</th>
+                    <th>Дата приобретения</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>   
+    </section>
     <script src="script.js"></script>
 </body>
 </html>

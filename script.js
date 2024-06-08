@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     checkuser();
     fetchDevices();//обновление при загрузке
+    fetchAddedDevices()
 });
 
 let deviceId;
@@ -14,9 +15,47 @@ createButton.addEventListener("click", function(event) {//событие кли�
             createDevice()
             deviceId = null
             fetchDevices();
+            fetchAddedDevices()
         }
     }
 });
+
+function fetchAddedDevices(){
+    fetch("read-addedDev.php", {
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data =>{
+        const tableBody = document.getElementById('added-device-table');
+        tableBody.innerHTML = '';
+
+        data.forEach(device => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${device.id}</td>
+                <td>${device.device_type}</td>
+                <td>${device.manufacturer}</td>
+                <td>${device.model}</td>
+                <td>${device.serial_number}</td>
+                <td>${device.purchase_date}</td>
+                <td>
+                    <button class="edit-btn" data-device-id="${device.id}">Редактировать</button>
+                    <button class="delete-btn" data-device-id="${device.id}">Удалить</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });  
+    })
+    .catch(error => {
+        alert('Произошла ошибка: ' + error.message);
+    });
+}
+
+
+
 
 const searchInput = document.getElementById('search-inp');//событие при записе в input 
 searchInput.addEventListener('input', function() {
@@ -91,6 +130,7 @@ function deleteDevice(deviceId) {//функция удаления
         if (data.success) {
             alert(data.message);
             fetchDevices();
+            fetchAddedDevices()
         } else {
             alert(data.message);
         }
@@ -147,6 +187,7 @@ function updateDevice(deviceId) {//функция редактирования
             createButton.value = 'Создать';
             createButton.textContent = 'Создать';
             fetchDevices();
+            fetchAddedDevices();
         } else {
             alert(data.message);
         }
@@ -170,6 +211,7 @@ function createDevice() {//функция добавления
             alert(data.message);
             form.reset();
             fetchDevices();
+            fetchAddedDevices()
         } else {
             alert(data.message);
         }
@@ -220,13 +262,10 @@ function checkuser(){
     .then(data => {
         console.log(data)
         if(data === 'true'){
-            window.location.href = 'login.php';
-        }
-        else if(data === 'false'){
             window.location.href = "register.php";
         }
-        else{
-            console.log("Пользователь зарегистрирован и авторизован");
+        else if(data === 'false'){
+            window.location.href = "login.php";
         }
     })
     .catch(error => {

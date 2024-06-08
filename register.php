@@ -2,9 +2,8 @@
 session_start();
 
 if (isset($_SESSION["register"]) && $_SESSION["register"] == true) {
-    header("location: index.html");
+    //header("location: index.html");
 }
-// при ошибке
 ?>
 <!DOCTYPE html>
 <html lang="ru">
