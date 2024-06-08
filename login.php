@@ -2,22 +2,28 @@
 session_start();
 
 if (isset($_SESSION["login"]) && isset($_SESSION["password"]) == true) {
-  header("location: index.html");
+  //header("location: index.html");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Логин</title>
-  <link rel="stylesheet" href="style_formUser.css">
+  <link rel="stylesheet" href="style_formUser1.css">
 </head>
 <body>
-  <form action="auth.php" method="post" id="myForm">
-    <h1>Войти в аккаут</h1>
-    <label>Логин: <input type="text" name="login" /></label>
-    <label>Пароль: <input type="password" name="password" /></label>
-    <input type="submit" id="button" value="войти" />
-  </form>
+<form action="auth.php" method="post" id="myForm">
+    <h1>Войти в аккаунт</h1>
+    <div class="form__input">
+        <input type="text" name="login" id="login" maxlength="15">
+        <label class="form__label" for="login">Логин:</label>
+    </div>
+    <div class="form__input">
+        <input type="password" name="password" id="password" required>
+        <label class="form__label" for="password">Пароль:</label>
+    </div>
+    <input type="submit" id="button" value="Войти">
+</form>
   <script>
     const loginInput = document.querySelector('input[name="login"]');
     const passwordInput = document.querySelector('input[name="password"]');
