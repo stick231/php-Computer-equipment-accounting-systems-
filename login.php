@@ -2,14 +2,14 @@
 session_start();
 
 if (isset($_SESSION["login"]) && isset($_SESSION["password"]) == true) {
-  //header("location: index.html");
+  header("location: index.html");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Логин</title>
-  <link rel="stylesheet" href="style_formUser1.css">
+  <link rel="stylesheet" href="style_formUser.css">
 </head>
 <body>
 <form action="auth.php" method="post" id="myForm">
