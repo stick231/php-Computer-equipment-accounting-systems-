@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["register"]) && $_SESSION["register"] == true) {
-    //header("location: index.html");
+    header("location: index.html");
 }
 ?>
 <!DOCTYPE html>
@@ -16,9 +16,15 @@ if (isset($_SESSION["register"]) && $_SESSION["register"] == true) {
 <body>
     <form action="complete.php" method="post" id="myForm">
         <h1>Регистрация</h1>
-        <label for="login">Логин: <input type="text" name="login"></label>
-        <label for="password">Пароль: <input type="text" name="password"></label>
-        <input type="submit" value="Зарегистрироваться" id="button">
+    <div class="form__input">
+        <input type="text" name="login" id="login" maxlength="15">
+        <label class="form__label" for="login">Логин:</label>
+    </div>
+    <div class="form__input">
+        <input type="password" name="password" id="password" required>
+        <label class="form__label" for="password">Пароль:</label>
+    </div>
+    <input type="submit" id="button" value="Зарегистрироваться">
     </form>
     <script>
         const loginInput = document.querySelector('input[name="login"]');

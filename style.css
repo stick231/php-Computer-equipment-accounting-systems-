@@ -12,11 +12,15 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   background-color: #060b23;
-  color: #666;
+  
 }
 
 section{
   height: 100vh;
+}
+
+label{
+  color: white;
 }
 
 #Form {
@@ -124,9 +128,9 @@ input[type="date"] {
   }
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
   margin-top: 1%;
-  left: 5%;
+  left: 18px;
   position: relative;
   width: 20rem;
   min-height: 3rem;
@@ -178,4 +182,64 @@ table#devicesTable td {
   padding: 1rem;
 }
 
-/* добавить  @media*/
+h2{
+  color: #adffff;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 10vh;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  height: 40vh;
+}
+
+#form-color {
+  flex-basis: 70%;
+  margin-left: 2.5%;
+}
+
+#table-example {
+  flex-basis: 30%;
+  color:white;
+  border: 1px solid white;
+  margin-right: 2.5%;
+  height: 30vh;
+}
+
+.container-color {
+  margin-bottom: 20px;
+  border-radius:100%;
+  display: flex;
+  margin-top: 2%;
+  flex-direction: row;
+}
+
+input[type="color"] {
+  border-radius: 5px;
+  padding: 0;
+  border: 5px solid #DDD;
+  margin-left: 2.5%;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+.label-color{
+  font-size: 25px;
+}
+
+#color-button{
+  margin-left: -2%;
+}

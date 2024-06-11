@@ -55,7 +55,6 @@
     </div>
 </section>
     </div> 
-        <section>  
         <form id="form-search">
             <label for="search" id="form__label">Поиск устройств <input type="text" name="search" id="search-inp"></label>
         </form>
@@ -73,7 +72,33 @@
             </thead>
             <tbody id="table-body"></tbody>
         </table>   
-    </section>
+    <h2>Сделай свою таблицу сам</h2>
+    <footer>
+        <form id="form-color">
+        <div class="container-color">
+            <label class="label-color" for="inp-border-color">Цвет рамки</label>
+            <input type="color" name="color_border" class="inp-color" id="color_border">
+        </div>
+        <div class="container-color">
+            <label class="label-color" for="inp-border-color">Цвет текста</label>
+            <input type="color" name="color_text" class="inp-color" id="color_text">
+        </div>
+        <div class="container-color">
+            <label class="label-color" for="color_background">Цвет фона</label>
+            <input type="color" name="color_background" class="inp-color" id="color_background">
+        </div>
+        <input type="button" id="color-button" value="Сохранить параметры">
+        </form>
+        <table id="table-example">
+            <thead>
+                <tr>
+                    <th>
+                        Это твоя будущая таблица, измени цвет и увидишь как она меняется
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

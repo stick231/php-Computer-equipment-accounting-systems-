@@ -47,6 +47,7 @@ function fetchAddedDevices(){
                 </td>
             `;
             tableBody.appendChild(row);
+            getColors()
         });  
     })
     .catch(error => {
@@ -91,6 +92,7 @@ function fetchDevices(searchQuery = '') {//функция вывода из бд
                     </td>
                 `;
                 tableBody.appendChild(row);
+                getColors()
             });
         })
         .catch(error => {
@@ -138,6 +140,7 @@ function deleteDevice(deviceId) {//функция удаления
     .catch(error => {
         alert('Произошла ошибка: ' + error.message);
     });
+    getColors()
 }
 
 function editDevice(deviceId) {//функция подготовки формы к редактированию
@@ -168,6 +171,7 @@ function editDevice(deviceId) {//функция подготовки формы 
     } else {
         alert('Не найдены необходимые поля формы');
     }
+    getColors()
 }
 
 function updateDevice(deviceId) {//функция редактирования
@@ -195,6 +199,7 @@ function updateDevice(deviceId) {//функция редактирования
     .catch(error => {
         alert('Произошла ошибка: ' + error.message);
     });
+    getColors()
 }
 
 function createDevice() {//функция добавления
@@ -219,6 +224,7 @@ function createDevice() {//функция добавления
     .catch(error => {
         alert('Произошла ошибка: ' + error.message);
     });
+    getColors()
 }
 
 function checkInp(){
@@ -272,3 +278,86 @@ function checkuser(){
         console.error('Error:', error);
     });
 }
+
+const buttonColor = document.getElementById("color-button")
+
+buttonColor.addEventListener("click", ()=>{
+    saveColors()
+})
+
+const colorBorder = document.getElementById('color_border')
+const colorText = document.getElementById('color_text')
+const colorBackground = document.getElementById('color_background')
+
+const tableExample = document.getElementById("table-example")
+
+colorBorder.addEventListener("input", () => {
+        tableExample.style.border = `1px solid ${colorBorder.value}`
+})
+
+colorText.addEventListener("input", () => {
+    tableExample.style.color = colorText.value
+})
+
+colorBackground.addEventListener("input", () => {
+    tableExample.style.background = colorBackground.value
+})
+
+
+// POST запрос
+function saveColors() {
+    const valueBorder = colorBorder.value;
+    const valueText = colorText.value;
+    const valueBackground = colorBackground.value;
+
+    fetch('color_table.php', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            color_border: valueBorder,
+            color_text: valueText,
+            color_background: valueBackground
+        })
+    })
+  
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);  
+        alert("цвета успешно изменены")
+        location.reload();
+    })
+  .catch(error => {
+    console.error('Ошибка:', error);
+  });
+}
+
+  
+function getColors() {
+    fetch('color_table.php',
+        {method: "GET"}
+        )
+    .then(response => response.json())
+    .then(data => {
+        if (data.color_border && data.color_text && data.color_background) {
+            console.log("цвета переданы")
+            document.getElementById('color_border').value  = data.color_border;
+            document.getElementById('color_text').value = data.color_text;
+            document.getElementById('color_background').value = data.color_background;
+        
+            const allTable = document.querySelectorAll('table:not(#table-example) th, table:not(#table-example) td')
+            
+            allTable.forEach((table) => {
+                table.style.border = `1px solid ${data.color_border}` 
+                table.style.color = data.color_text
+                table.style.backgroundColor = data.color_background
+            })
+      } else {
+        console.log(data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+    });
+  }
