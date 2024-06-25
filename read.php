@@ -2,7 +2,7 @@
 require_once 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
-    $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+    $searchQuery = isset($_GET['search']) ? $mysqli->real_escape_string($_GET['search']) : '';
 
     $sql = "SELECT * FROM devices";
     if ($searchQuery) {
@@ -13,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                             OR serial_number LIKE '%$searchQuery%'
                             OR purchase_date LIKE '%$searchQuery%'";
     }
+
+    error_log("SQL Query: " . $sql); // Логирование запроса
 
     $result = $mysqli->query($sql);
 
@@ -29,4 +31,3 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     echo json_encode($devices);
 }
 ?>
-

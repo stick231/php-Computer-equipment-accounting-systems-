@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    checkuser();
+    checkUser();
     fetchDevices();//обновление при загрузке
     fetchAddedDevices()
 });
@@ -55,13 +55,12 @@ function fetchAddedDevices(){
     });
 }
 
-
-
-
 const searchInput = document.getElementById('search-inp');//событие при записе в input 
+
 searchInput.addEventListener('input', function() {
     const searchQuery = searchInput.value.trim();
     fetchDevices(searchQuery);
+    scrollFormElement("devicesTable")
 });
 
 function fetchDevices(searchQuery = '') {//функция вывода из бд и поиска если input не пустой
@@ -107,6 +106,7 @@ document.addEventListener('click', function(event) {//удаление и ред
         deleteDevice(deviceId);
     } else if (event.target.classList.contains('edit-btn')) {
         deviceId = event.target.dataset.deviceId;
+        scrollFormElement("deviceManagementSection")
         editDevice(deviceId);
         isEditing = false
         createButton.addEventListener("click", function(event){
@@ -118,6 +118,11 @@ document.addEventListener('click', function(event) {//удаление и ред
         })
     }
 });
+
+function scrollFormElement(ElementScroll){
+    const element = document.getElementById(ElementScroll)
+    element.scrollIntoView({ behavior: 'smooth' });
+}
 
 function deleteDevice(deviceId) {//функция удаления
     fetch('delete.php', {
@@ -140,7 +145,6 @@ function deleteDevice(deviceId) {//функция удаления
     .catch(error => {
         alert('Произошла ошибка: ' + error.message);
     });
-    getColors()
 }
 
 function editDevice(deviceId) {//функция подготовки формы к редактированию
@@ -171,7 +175,6 @@ function editDevice(deviceId) {//функция подготовки формы 
     } else {
         alert('Не найдены необходимые поля формы');
     }
-    getColors()
 }
 
 function updateDevice(deviceId) {//функция редактирования
@@ -224,7 +227,6 @@ function createDevice() {//функция добавления
     .catch(error => {
         alert('Произошла ошибка: ' + error.message);
     });
-    getColors()
 }
 
 function checkInp(){
@@ -262,16 +264,24 @@ function checkInp(){
     return true;
 }
 
-function checkuser(){
-    fetch('checkuser.php')
-    .then(response => response.text())
-    .then(data => {
-        console.log(data)
-        if(data === 'true'){
-            window.location.href = "register.php";
+function checkUser() {
+    fetch("checkuser.php")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-        else if(data === 'false'){
-            window.location.href = "login.php";
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        if (data.register) {
+            console.log("User is registered");        
+            if (!data.authentication) {
+                window.location = "login.php";
+            }
+        } else {
+            console.log("User is not registered");
+            window.location = "register.php";
         }
     })
     .catch(error => {
@@ -304,7 +314,6 @@ colorBackground.addEventListener("input", () => {
 })
 
 
-// POST запрос
 function saveColors() {
     const valueBorder = colorBorder.value;
     const valueText = colorText.value;
@@ -312,7 +321,7 @@ function saveColors() {
 
     fetch('color_table.php', {
         method: 'POST',
-        headers: {
+        headers: {  
         'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -341,7 +350,6 @@ function getColors() {
     .then(response => response.json())
     .then(data => {
         if (data.color_border && data.color_text && data.color_background) {
-            console.log("цвета переданы")
             document.getElementById('color_border').value  = data.color_border;
             document.getElementById('color_text').value = data.color_text;
             document.getElementById('color_background').value = data.color_background;
