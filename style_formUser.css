@@ -102,10 +102,16 @@ input[type="password"]{
   background-color: #18ffff;
   cursor: pointer;
   font-size: 30px;
+  transition: background-color 0.3s ease-in-out;
 
   &:hover {
     background-color: #adffff;
   }
 }
 
+#button,
+#button:active,
+#button:focus  {
+  border:none;
+}
                     

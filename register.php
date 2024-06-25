@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION["register"]) && $_SESSION["register"] == true) {
+if (isset($_SESSION["user_idT"])) {
     header("location: index.html");
+    exit();
 }
 ?>
 <!DOCTYPE html>

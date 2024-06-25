@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["login"]) && isset($_SESSION["password"]) == true) {
+if (isset($_SESSION["login_userT"])) {
   header("location: index.html");
 }
 ?>
@@ -43,7 +43,7 @@ if (isset($_SESSION["login"]) && isset($_SESSION["password"]) == true) {
         alert('Введите пароль');
         return;
       }
-
+      
       form.submit();
        });
   </script>

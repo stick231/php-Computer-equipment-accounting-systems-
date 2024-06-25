@@ -129,7 +129,7 @@ input[type="date"] {
 }
 
 input[type="submit"], input[type="button"] {
-  margin-top: 1%;
+  margin-top: 5%;
   left: 18px;
   position: relative;
   width: 20rem;

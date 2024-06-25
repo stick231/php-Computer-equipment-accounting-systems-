@@ -6,23 +6,19 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
     $login = $_POST["login"];
     $password = $_POST["password"];
 
+    $query = "SELECT * FROM users WHERE login = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $login);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
 
-    $query = "SELECT * FROM users WHERE login = '$login'";
-    $request = $conn->query($query);
-
-    if ($request) {
-        $row = mysqli_fetch_assoc($request);
-
-        if ($row !== null && $login == $row["login"] && $password == $row["password"]) {
-            $_SESSION["login"] = $login;
-            $_SESSION["password"] = $password;
-            header("location: index.html");
-            exit;
-        } else {
-            $warning = "Неверный логин или пароль";
-        }
+    if ($row && password_verify($password, $row["password"])) {
+        $_SESSION["login_userT"] = $login;
+        header("location: index.html");
+        exit;
     } else {
-        $warning = "Пользователь не найден";
+        $warning = "Неверный логин или пароль";
     }
 } else {
     $warning = "Ошибка авторизации";
