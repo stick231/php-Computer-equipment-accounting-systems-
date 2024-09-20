@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  background-color: #060b23;
+  
+}
+
+section{
+  height: 100vh;
+}
+
+label{
+  color: white;
+}
+
+#Form {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  height: 80vh;
+}
+
+#deviceForm{
+  display: flex;
+  flex-direction: column;
+}
+
+#AddedDevices {
+  flex-basis: 60%;
+  color: white;
+  table-layout: fixed;
+}
+
+
+#AddedDevices th,
+#AddedDevices td{
+  border: 2px solid #18ffff;
+  border-radius: 5px;
+  padding: 1rem;
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+}
+
+h1{
+  color: #adffff;
+  text-align: center;
+  font-size: 40px;
+  position: relative;
+  top: 2%;
+}
+
+div h1{
+  font-size: 35px;
+  color:#cafcfc;
+  margin-top: 2.5%;
+  margin-bottom: 3%;
+}
+
+.form {
+  position: relative;
+  width: 18rem;
+  height: 3rem;
+}
+
+.form__input {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
+  color: white;
+  outline: none;
+  padding: 1rem;
+  background: none;
+
+  &:hover {
+    border-color: #666;
+  }
+
+  &:focus {
+    border-color: #18ffff;
+  }
+}
+
+.form__label {
+  position: absolute;
+  left: 1rem;
+  top: 0.8rem;
+  padding: 0 0.5rem;
+  color: white;
+  cursor: text;
+  transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  background-color: #060b23;
+}
+
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  position: relative;
+  width: 20rem;
+  height: 4rem;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
+  color: white;
+  outline: none;
+  padding: 1.25rem;
+  background: none;
+  &:hover {
+    border-color: #adffff;
+  }
+
+  &:focus {
+    border-color: #18ffff;
+  }
+}
+
+input[type="submit"], input[type="button"] {
+  margin-top: 5%;
+  left: 18px;
+  position: relative;
+  width: 20rem;
+  min-height: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
+  color: white;
+  background-color: #18ffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #adffff;
+  }
+}
+
+.edit-btn, .delete-btn{
+  padding: 5px;
+  margin-top: 2%;
+  color: white;
+  background-color: #18ffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  &:hover {
+    background-color: #adffff;
+  }
+}
+
+#form-search{
+  color: white;
+  margin-bottom: 2%;
+  margin-left: 5%;
+}
+
+#devicesTable{
+  color: #adffff;
+  width: 99vw;
+  table-layout: fixed;
+}
+
+table#devicesTable th,
+table#devicesTable td {
+  text-align: left;
+  border: 2px solid #b2ebeb;
+  border-radius: 5px;
+  padding: 1rem;
+  word-wrap: break-word; /* Для старых браузеров */
+  overflow-wrap: break-word;
+}
+
+h2{
+  color: #adffff;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 10vh;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  height: 40vh;
+}
+
+#form-color {
+  flex-basis: 70%;
+  margin-left: 2.5%;
+}
+
+#table-example {
+  flex-basis: 30%;
+  color:white;
+  border: 1px solid white;
+  margin-right: 2.5%;
+  height: 30vh;
+}
+
+.container-color {
+  margin-bottom: 20px;
+  border-radius:100%;
+  display: flex;
+  margin-top: 2%;
+  flex-direction: row;
+}
+
+input[type="color"] {
+  border-radius: 5px;
+  padding: 0;
+  border: 5px solid #DDD;
+  margin-left: 2.5%;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+.label-color{
+  font-size: 25px;
+}
+
+#color-button{
+  margin-left: -2%;
+}
