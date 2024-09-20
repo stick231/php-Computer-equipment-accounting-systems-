@@ -4,7 +4,7 @@ namespace Entities;
 class Database{
     private $user = "user";    
     private $pass = "1234";
-    private $db = "dbtest";
+    private $db = "dbtestT";
     private $host = "mysqlT";
     public $conn;
 
