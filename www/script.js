@@ -292,7 +292,6 @@ function checkUser() {
             console.log("User is registered");        
             if (!data.authentication) {
                 console.log("User is not auth");
-                window.location = "login.php";
             }
         } else {
             console.log("User is not registered");
