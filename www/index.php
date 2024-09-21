@@ -154,7 +154,7 @@ try {
                 <label class="form__label" for="model">Модель:</label>
             </div>
             <div class="form__input">
-                <input type="number" id="serial_number" name="serial_number" pattern="[0-9]{1,8}">
+                <input type="number" id="serial_number" name="serial_number" max="10000000" pattern="[0-9]{1,8}">
                 <label class="form__label" for="serial_number">Серийный номер:</label>
             </div>
             <div class="form__input">
