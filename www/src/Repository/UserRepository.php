@@ -104,4 +104,9 @@ class UserRepository implements UserRepositoryInterface{
             return false;
         }
     }
+
+    public function logout()
+    {
+        // TODO: must be done logout and migration db
+    }
 }
