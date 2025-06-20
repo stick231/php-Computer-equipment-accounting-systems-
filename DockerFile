@@ -39,13 +39,11 @@ COPY .docker/php-fpm/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 COPY .docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY .docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Копирование проекта
-COPY ./www /var/www/
-COPY composer.json /var/www/
-COPY composer.lock /var/www/
 
-# Установка зависимостей PHP
-WORKDIR /var/www/
+WORKDIR /var/www
+COPY composer.json composer.lock ./
+COPY ./www ./www
+
 RUN composer install --no-dev --optimize-autoloader
 
 # Копирование и установка entrypoint
