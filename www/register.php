@@ -6,6 +6,9 @@ use Entities\Database;
 use Entities\User;
 use Repository\UserRepository;
 
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
 $authAction = new AuthController();
 
 if(isset($_GET['register']) && $_GET['register'] === false){

@@ -1,8 +1,8 @@
 {
-    "name": "stick231/notesproject",
-    "description": "Проект таблица",
+    "name": "stick231/computer-equipment-accounting-systems",
+    "description": "Computer-equipment-accounting-systems project",
     "require": {
-        "vlucas/phpdotenv": "^5.4",
+        "vlucas/phpdotenv": "^5.6",
         "phroute/phroute": "^2.2"
     },
     "autoload": {
@@ -12,7 +12,6 @@
             "Entities\\": "www/src/Entities/",
             "Factory\\": "www/src/Factory/",
             "Repository\\": "www/src/Repository/"
-
         }
     }
 }

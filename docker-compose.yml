@@ -1,7 +1,8 @@
 services:
-  ### Web Server Container
   web:
-    image: lobsterk/web-nginx-php
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: webT
     restart: always
     ports:
@@ -19,26 +20,29 @@ services:
     container_name: mysqlT
     restart: always
     ports:
-      - "3308:3306"  # Исправлено на 3306, так как MySQL по умолчанию использует этот порт.
+      - "3308:3306"  
     environment:
-      MYSQL_DATABASE: dbtestT
-      MYSQL_USER: user
-      MYSQL_PASSWORD: 1234
-      MYSQL_ROOT_PASSWORD: r1234
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    # volumes:
+      # - ./www:/var/www
+      # - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
 
   ## Adminer container
   adminer:
     image: adminer
     container_name: adminerT
     depends_on:
-      - mysql  # Зависимость от mysql сервиса
+      - mysql 
     ports:
-      - "8085:8080"  # Исправлено на 8080, так как Adminer по умолчанию использует этот порт.
+      - "8085:8080" 
 
   ## Redis Container
   redis:
     image: 'bitnami/redis:latest'
     environment:
-      - REDIS_PASSWORD=my_master_password
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     ports:
       - '6379:6379'

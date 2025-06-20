@@ -6,6 +6,9 @@ use Entities\User;
 use Entities\Database;
 use Repository\UserRepository;
 
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
 $authAction = new AuthController();
 
 setcookie("register", 'false', time() + 3600 * 24 * 30, "/");

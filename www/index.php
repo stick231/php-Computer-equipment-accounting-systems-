@@ -13,6 +13,9 @@ use Phroute\Phroute\Dispatcher;
 use CustomTable\ColorCustom;
 use Controllers\AuthController;
 
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
 $router = new RouteCollector();
 
 $authController = new AuthController();

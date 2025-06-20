@@ -2,11 +2,19 @@
 namespace Entities;
 
 class Database{
-    private $user = "user";    
-    private $pass = "1234";
-    private $db = "dbtestT";
-    private $host = "mysqlT";
+    private $host;
+    private $db;
+    private $user;    
+    private $pass;
     public $conn;
+
+    public function __construct()
+    {
+        $this->host = $_ENV['DB_HOST'];
+        $this->db = $_ENV['DB_DATABASE'];
+        $this->user = $_ENV['DB_USERNAME'];
+        $this->pass = $_ENV['DB_PASSWORD'];
+    }
 
     public function getConnection()
     {

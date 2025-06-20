@@ -4,6 +4,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Entities\Database;
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 $database = (new Database())->getConnection();
 
 $query = "
