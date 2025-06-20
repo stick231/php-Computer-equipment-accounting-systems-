@@ -140,45 +140,45 @@ try {
 <body>
     <section id="deviceManagementSection">
     <header>
-        <h1>Управление устройствами</h1>
+        <h1>Device management</h1>
     </header>
     <div id="Form">
         <form id="deviceForm">
             <div class="form__input">
                 <input type="text" id="device_type" name="device_type" maxlength="15">
-                <label class="form__label" for="device_type">Тип устройства:</label>
+                <label class="form__label" for="device_type">Device type:</label>
             </div>
             <div class="form__input">
-                <input type="text" id="manufacturer" name="manufacturer" maxlength="15">
-                <label class="form__label" for="manufacturer">Производитель:</label>
+                <input type="text" id="manufacturer" name="manufacturer" maxlength="25">
+                <label class="form__label" for="manufacturer">Brand:</label>
             </div>
             <div class="form__input">
-                <input type="text" id="model" name="model" required maxlength="17">
-                <label class="form__label" for="model">Модель:</label>
+                <input type="text" id="model" name="model" required maxlength="30">
+                <label class="form__label" for="model">Model:</label>
             </div>
             <div class="form__input">
-                <input type="number" id="serial_number" name="serial_number" max="10000000" pattern="[0-9]{1,8}">
-                <label class="form__label" for="serial_number">Серийный номер:</label>
+                <input type="text" id="serial_number" name="serial_number" max="10000000" pattern="[0-9]{1,8}">
+                <label class="form__label" for="serial_number">Serial number:</label>
             </div>
             <div class="form__input">
                 <input type="date" id="purchase_date" name="purchase_date">
-                <label class="form__label" for="purchase_date">Дата приобретения:</label>
+                <label class="form__label" for="purchase_date">Date of purchase:</label>
             </div>
-            <input type="submit" id="button-create" value="создать">
+            <input type="submit" id="button-create" value="create">
         </form>
         </table>
     <div>    
         <table id="AddedDevices">
-            <h1>Последние добавленые устройства</h1>
+            <h1>Latest added devices</h1>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Тип устройства</th>
-                    <th>Производитель</th>
-                    <th>Модель</th>
-                    <th>Серийный номер</th>
-                    <th>Дата приобретения</th>
-                    <th>Действия</th>
+                    <th>Device type</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Serial number</th>
+                    <th>Date of purchase</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="added-device-table"></tbody>
@@ -187,44 +187,44 @@ try {
 </section>
     </div> 
         <form id="form-search">
-            <label for="search" id="form__label">Поиск устройств <input type="text" name="search" id="search-inp"></label>
+            <label for="search" id="form__label">Search for devices <input type="text" name="search" id="search-inp"></label>
         </form>
         <table id="devicesTable">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Тип устройства</th>
-                    <th>Производитель</th>
-                    <th>Модель</th>
-                    <th>Серийный номер</th>
-                    <th>Дата приобретения</th>
-                    <th>Действия</th>
+                    <th>Device type</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Serial number</th>
+                    <th>Date of purchase</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="table-body"></tbody>
         </table>   
-    <h2>Сделай свою таблицу сам</h2>
+    <h2>Make your own table yourself</h2>
     <footer>
         <form id="form-color">
         <div class="container-color">
-            <label class="label-color" for="inp-border-color">Цвет рамки</label>
+            <label class="label-color" for="inp-border-color">Frame color</label>
             <input type="color" name="color_border" class="inp-color" id="color_border">
         </div>
         <div class="container-color">
-            <label class="label-color" for="inp-border-color">Цвет текста</label>
+            <label class="label-color" for="inp-border-color">Text color</label>
             <input type="color" name="color_text" class="inp-color" id="color_text">
         </div>
         <div class="container-color">
-            <label class="label-color" for="color_background">Цвет фона</label>
+            <label class="label-color" for="color_background">Background color</label>
             <input type="color" name="color_background" class="inp-color" id="color_background">
         </div>
-        <input type="button" id="color-button" value="Сохранить параметры">
+        <input type="button" id="color-button" value="Save settings">
         </form>
         <table id="table-example">
             <thead>
                 <tr>
                     <th>
-                        Это твоя будущая таблица, измени цвет и увидишь как она меняется
+                        This is your future table. Change the color to see it in action.
                     </th>
                 </tr>
             </thead>

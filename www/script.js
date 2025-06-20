@@ -31,8 +31,8 @@ function fetchAddedDevices() {
                 <td>${device.serial_number}</td>
                 <td>${device.purchase_date}</td>
                 <td>
-                    <button class="edit-btn" data-device-id="${device.id}">Редактировать</button>
-                    <button class="delete-btn" data-device-id="${device.id}">Удалить</button>
+                    <button class="edit-btn" data-device-id="${device.id}">Edit</button>
+                    <button class="delete-btn" data-device-id="${device.id}">Delete</button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -77,8 +77,8 @@ function fetchDevices(searchQuery = '') {
                 <td>${device.serial_number}</td>
                 <td>${device.purchase_date}</td>
                 <td>
-                    <button class="edit-btn" data-device-id="${device.id}">Редактировать</button>
-                    <button class="delete-btn" data-device-id="${device.id}">Удалить</button>
+                    <button class="edit-btn" data-device-id="${device.id}">Edit</button>
+                    <button class="delete-btn" data-device-id="${device.id}">Delete</button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -204,7 +204,7 @@ function updateDevice(deviceId) {//функция редактирования
     .then(data => {
         if (data.success) {
             form.reset();
-            createButton.textContent = 'Создать';
+            createButton.textContent = 'create';
             alert(data.message)
         } else {
             alert(data.message);
